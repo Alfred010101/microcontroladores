@@ -1,0 +1,77 @@
+
+ROM used:   7604/32768 (23%)
+            7604/32768 (23%) including unused fragments
+
+            3.6 Average locations per line
+            15.6 Average locations per statement
+
+RAM used:   1060/2048 (52%) at main() level
+            1143/2048 (56%) worst case
+
+Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  192    71  15  main.c
+  837     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\18f4550.h
+  938   416  85  lib\SSD1306_OLED.c
+  163     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
+----- -----
+ 2130   487 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     82   1    1             @I2C_WRITE_1
+0     40   0    1             @delay_ms1
+0    272   2    0             @const823
+0    236   2    0             @const826
+0     64   0    2   163  2.3  ssd1306_command
+0    334   2    2  1210  4.9  SSD1306_Begin
+0    240   2    8   408  8.9  SSD1306_DrawPixel
+0    190   1    1   635  6.7  SSD1306_Display
+0     40   0    2   124  4.3  SSD1306_ClearDisplay
+0    502   3   19  1524  7.9  SSD1306_DrawLine
+0     42   0    5   146  3.1  SSD1306_DrawFastHLine
+0     42   0    5   146  3.1  SSD1306_DrawFastVLine
+0     62   0    5   219  4.1  SSD1306_FillRect
+0    104   1    5   274  2.8  SSD1306_DrawRect
+0     74   0    6   185  4.0  SSD1306_DrawText
+0     30   0    2   127  3.9  SSD1306_GotoXY
+0     20   0    1    68  2.4  SSD1306_TextSize
+0    436   3    8  2269 11.8  SSD1306_Print
+0   2428  16    4  3503  7.9  MAIN
+0     28   0    0             @const919
+0     30   0    0             @const922
+0     28   0    0             @const923
+0     54   0    2             @ITOF
+0    350   2   14             @DIVFF
+0    246   2   11             @MULFF
+0     32   0    1             @SPRINTF
+0    200   1    9             @PRINTF_LU_934
+0     68   0    5             @FTOSD
+0    148   1   13             @DIV3232
+0    422   3   13             @PRINTF_L32D_934FPFPF
+0    634   4   16             @ADDFF
+0    122   1   10             @FLT
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               15
+    Statements              487
+    Comments                338
+    Volume (V)              16322
+    Difficulty (D)          78.7
+    Effort to implement (E) 1284387
+    Time to implement (T)   19 hours, 49 minutes
+    Est Delivered Bugs (B)  4
+    Cyclomatic Complexity   43
+    Maintainability (MI)    121
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE  7600  25164  
+
+
+

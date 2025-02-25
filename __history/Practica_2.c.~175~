@@ -1,0 +1,349 @@
+//#fuses intrc, nowdt
+
+#include <18f4550.h>
+#include <string.h>
+#fuses xt, nowdt, intrc
+#use delay(internal = 8M)
+#define LCD_DATA_PORT getenv("SFR:PORTD")   
+#include <lcd.c>
+
+#byte TRISB = 0xF93
+#byte PORTB = 0xF81
+#byte TRISC = 0xF94
+#byte PORTC = 0xF82
+
+#define VERDE        0
+#define AMARILLA     1
+#define ROJA         2
+#define APAGADO      0
+#define ENCENDIDO    1
+#define MAX_LONGITUD 5
+
+char *mensages[] = {
+        "CLAVE\n   INCORRECTA",
+        "ABRIENDO\n      PUERTA",
+        "CERRANDO\n      PUERTA",
+        "NUEVA CLAVE",
+        "CONFIRMAR CLAVE",
+        "CLAVE\n   ACTUALIZADA",
+        "PUERTA CERRADA",
+        " CLAVE ACTUAL"
+    };
+
+void cargando();
+void mensage_info(char cadena[], int pos_x, int pos_y, int tipo, int establecer);
+void ingresar_clave(char clave[], char cadena[]);
+char com_tecla();
+void esperar(int tiempo);
+void acceso_permitido(char cadena[]);
+void inicializar(char cadena[], int longitud, char valor);
+int cambiar_clave();
+void obtener_nueva_clave(char clave[], char mensaje[]);
+void imprimir_cadena(char cadena[]);
+
+char clave[MAX_LONGITUD] = {'1','2','3','4','\0'};
+
+void main()
+{
+   int intentos_ingresar = 0;
+   char clave_ingresada[MAX_LONGITUD];
+   TRISC = 0x00;
+   PORTC = 0x00;
+   inicializar(clave_ingresada, MAX_LONGITUD, '\0');
+   
+   cargando();
+
+   while(TRUE)
+   {
+      ingresar_clave(clave_ingresada, mensages[6]);
+      if(!strcmp(clave, clave_ingresada))
+      {
+         lcd_putc("\f"); 
+         mensage_info(mensages[1], 6, 1, AMARILLA, APAGADO);
+         bit_set(PORTC, 0);
+         acceso_permitido(mensages[2]);
+         bit_clear(PORTC, 0);
+         intentos_ingresar = 0;
+      }else
+      {
+         mensage_info(mensages[0], 7, 1, ROJA, APAGADO);
+         if(++intentos_ingresar == 2)
+         {
+            esperar(20);
+            intentos_ingresar = 0;
+         }
+      }
+      lcd_putc("\f");
+   }   
+}
+
+int cambiar_clave()
+{
+   char clave_ingresada[MAX_LONGITUD];
+    
+   inicializar(clave_ingresada, MAX_LONGITUD, '\0');
+   lcd_putc("\f");
+   for(int intentos_autenticar = 0; intentos_autenticar < 2; intentos_autenticar++)
+   {
+      ingresar_clave(clave_ingresada, mensages[7]);
+   
+      if(!strcmp(clave, clave_ingresada))
+      {
+         char clave_verificar[MAX_LONGITUD];
+         for(intentos_autenticar = 0; intentos_autenticar < 2; intentos_autenticar++)
+         {                        
+            inicializar(clave_ingresada, MAX_LONGITUD, '\0');
+            inicializar(clave_verificar, MAX_LONGITUD, '\0');
+            
+            obtener_nueva_clave(clave_ingresada, mensages[3]);
+            obtener_nueva_clave(clave_verificar,mensages[4]);
+            
+            if(!strcmp(clave_ingresada, clave_verificar))
+            {
+               strcpy(clave, clave_verificar);
+               mensage_info(mensages[5], 1, 1, VERDE, ENCENDIDO);
+               return 0;
+            }else
+            {
+               mensage_info(mensages[0], 7, 1, ROJA, APAGADO);
+            }
+         }         
+      }else
+      {
+         mensage_info(mensages[0], 1, 1, ROJA, APAGADO);
+      }
+   }
+   esperar(10);
+   return 1;
+}
+
+//permance mientras este dentro(puerta abierta)
+void acceso_permitido(char cadena[])
+{
+   char tecla = 0; 
+   lcd_gotoxy(2, 1);
+   lcd_putc("PUERTA ABIERTA"); 
+   lcd_gotoxy(1, 2);
+   lcd_putc("1)CAMBIA 2)SALIR");
+   do
+   {
+      tecla = com_tecla();
+      switch(tecla)
+      {
+         case '1':
+            
+            cambiar_clave();
+            lcd_gotoxy(2, 1);
+            lcd_putc("PUERTA ABIERTA"); 
+            lcd_gotoxy(1, 2);
+            lcd_putc("1)CAMBIA 2)SALIR");
+            break;
+         case '2':
+            mensage_info(cadena, 6, 1, AMARILLA, APAGADO);
+            break;
+      }
+   }while(tecla != '2');
+}
+
+//muestra mensages informativo en el LCD en x,y
+void mensage_info(char cadena[], int pos_x, int pos_y, int luz, int establecer)
+{
+   for(int j = 1; j < 4; j++)
+   {
+      lcd_gotoxy(pos_x, pos_y);
+      printf(lcd_putc,"%s", cadena);
+      if(luz == 0 || luz == 1 || luz == 2)
+      {
+         bit_set(PORTC, luz);
+         delay_ms(95);
+         lcd_putc("\f");
+         bit_clear(PORTC, luz);
+         delay_ms(45);
+      }
+   }  
+   lcd_putc("\f");
+   if(luz == 0 || luz == 1 || luz == 2)
+   {
+      if(establecer)
+      {
+         bit_set(PORTC, luz);
+      }else
+      {
+         bit_clear(PORTC, luz);
+      }
+   }
+}
+
+
+//espera la nueva clave debe tener 4 digitos para retornar la clave
+void obtener_nueva_clave(char clave[], char mensaje[])
+{
+   lcd_gotoxy(3,1);
+   printf(lcd_putc,"%s", mensaje);
+   int longitud = 0;
+   char tecla = 0; 
+   do
+   {
+      tecla = com_tecla();
+      if(tecla == 0)
+      {
+         continue;
+      }
+      if(longitud < MAX_LONGITUD - 1)
+      {
+         if(tecla >= '0' && tecla <= '9')
+         {
+            lcd_gotoxy(11 + longitud,2);
+            lcd_putc(tecla);
+            clave[longitud++] = tecla;
+         }       
+      }
+      if(tecla == 'A' && longitud > 0)
+      {
+         clave[longitud--] = '\0';
+         lcd_putc("\b \b");
+      }
+   }while(tecla != 'D' || longitud != MAX_LONGITUD - 1);
+   clave[MAX_LONGITUD - 1] = '\0';
+   lcd_putc("\f");
+}
+
+/** 
+   espera a que ingrese la clave
+   perimite valores de '0' a '9'
+   tecla 'A' para eliminar el ultimo caracter
+   tecla 'D' = OK para comprobar la clave
+**/
+void ingresar_clave(char clave[], char cadena[])
+{
+   lcd_gotoxy(2,1);
+   printf(lcd_putc,"%s", cadena);
+   lcd_gotoxy(3,2);
+   lcd_putc("CLAVE : ");
+   int longitud = 0;
+   char tecla = 0; 
+   do
+   {
+      lcd_putc((unsigned char)255);
+      delay_ms(30);
+      
+      tecla = com_tecla();
+      
+      if(longitud < MAX_LONGITUD - 1)
+      {
+         if(tecla >= '0' && tecla <= '9')
+         {
+            lcd_putc(tecla);
+            printf(lcd_putc,"\b%c%c", tecla, (unsigned char)255);
+            clave[longitud++] = tecla;
+            clave[longitud] = '\0';
+         }       
+      }
+      if(tecla == 'A' && longitud > 0)
+      {
+         clave[longitud--] = '\0';
+         lcd_putc("\b \b");
+      }
+      lcd_putc("\b \b");
+      delay_ms(30);
+   }while(tecla != 'D' || longitud == 0);
+   lcd_putc("\f");
+}
+
+
+
+/**
+   bloquea el sistema entre 1 & 99seg
+   depende de el valor asignado
+**/
+void esperar(int tiempo)
+{
+   lcd_putc("\f"); 
+   bit_set(PORTC, 1);
+   lcd_gotoxy(3,1);
+   lcd_putc("INTENTE EN :"); 
+   lcd_gotoxy(8,2);
+   for(int i = tiempo; i > 0; i--)
+   {  
+      lcd_putc((char)(48 + (i/10)));
+      lcd_putc((char)(48 + (i%10))); 
+      delay_ms(250);
+      lcd_putc("\b \b\b \b");
+   }
+   bit_clear(PORTC, 1);
+   lcd_putc("\f"); 
+}
+
+/**
+   retorna la tecla presiona
+   si no se presiona ninguna retorna 0
+**/
+char com_tecla()
+{
+   const int FILA = 4;
+   const int COLUMNA = 4;
+   char const KEYS[4][4] = { 
+                             {'1','2','3','A'},
+                             {'4','5','6','B'},
+                             {'7','8','9','C'},
+                             {'*','0','#','D'}
+                           };
+   char tecla = 0;
+   
+   TRISB=0xF0;
+   PORTB=0x00;
+   
+   for(int i = 0; i < FILA; i++)
+   {
+      bit_set(PORTB, i);
+      for(int j = 0; j < COLUMNA; j++)
+      {
+         if(bit_test(portb,j + COLUMNA) == 1)
+         {
+            tecla=KEYS[i][j];          
+           // delay_ms(25);  
+            return tecla;
+         }
+      }
+      bit_clear(PORTB, i);
+   }
+   return tecla;
+}
+
+
+
+// OKKKKKKK
+
+
+/**
+   inicializa un arreglo con el valor proporcionado
+**/
+void inicializar(char cadena[], int longitud, char valor)
+{
+   for(int a = 0; a < longitud; a++)
+   {
+      cadena[a] = valor;
+   }
+}
+
+/**
+   muestra la pantalla de inicializacion
+**/
+void cargando()
+{
+   lcd_init();
+   lcd_gotoxy(5,1);
+   lcd_putc("INICIANDO");
+   for(int i = 1; i < 17; )
+   {
+      for(int j = 0; j < 3; j++)
+      {
+         lcd_gotoxy(i++,2); 
+         lcd_putc((unsigned char)255);
+         bit_set(PORTC, 2 - j);
+         delay_ms(30);
+         bit_clear(PORTC, 2- j);
+      }
+   }
+   lcd_putc("\f");
+}

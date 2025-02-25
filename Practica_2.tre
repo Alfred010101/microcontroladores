@@ -1,0 +1,158 @@
+ÀÄPractica_2
+   ÀÄMAIN  0/454  Ram=6
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄinicializar  0/32  Ram=6
+      ÃÄcargando  0/146  Ram=1
+      ³  ÃÄlcd_init  0/120  Ram=6
+      ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÃÄlcd_send_nibble  0/26  Ram=1
+      ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÃÄlcd_send_nibble  0/26  Ram=1
+      ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÀÄlcd_send_byte  0/58  Ram=3
+      ³  ³     ÃÄlcd_read_byte  0/62  Ram=3
+      ³  ³     ³  ÃÄlcd_read_nibble  0/12  Ram=0
+      ³  ³     ³  ÀÄlcd_read_nibble  0/12  Ram=0
+      ³  ³     ÃÄlcd_send_nibble  0/26  Ram=1
+      ³  ³     ÀÄlcd_send_nibble  0/26  Ram=1
+      ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ÀÄlcd_send_byte  0/58  Ram=3
+      ³  ³     ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄlcd_putc  0/80  Ram=1
+      ³  ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄlcd_send_byte  0/58  Ram=3
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄlcd_send_byte  0/58  Ram=3
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÀÄlcd_send_byte  0/58  Ram=3
+      ³  ³        ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÀÄ@PSTRINGC_767  0/32  Ram=2
+      ³     ÀÄ*
+      ÃÄingresar_clave  0/170  Ram=6
+      ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGR_767  0/36  Ram=2
+      ³  ³  ÀÄlcd_putc  0/80  Ram=1
+      ³  ³     ÀÄ*
+      ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄcomando_tecla  0/100  Ram=1
+      ³  ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÃÄcom_tecla  0/162  Ram=3
+      ³  ³  ³  ÃÄ@const871  0/32  Ram=0
+      ³  ³  ³  ÀÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³  ÀÄcom_tecla  0/162  Ram=3
+      ³  ³     ÀÄ*
+      ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÀÄ@PSTRINGC_767  0/32  Ram=2
+      ³     ÀÄ*
+      ÃÄstrcmp  0/116  Ram=5
+      ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ÀÄ*
+      ÃÄmensage_info  0/174  Ram=6
+      ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGR_767  0/36  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ÀÄ@PSTRINGC_767  0/32  Ram=2
+      ³     ÀÄ*
+      ÃÄacceso_permitido  0/108  Ram=3
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄcom_tecla  0/162  Ram=3
+      ³  ³  ÀÄ*
+      ³  ÃÄcambiar_clave  0/276  Ram=5
+      ³  ³  ÃÄinicializar  0/32  Ram=6
+      ³  ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄingresar_clave  0/170  Ram=6
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄstrcmp  0/116  Ram=5
+      ³  ³  ÃÄinicializar  0/32  Ram=6
+      ³  ³  ÃÄinicializar  0/32  Ram=6
+      ³  ³  ÃÄobtener_nueva_clave  0/160  Ram=8
+      ³  ³  ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÃÄ@PSTRINGR_767  0/36  Ram=2
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÃÄcomando_tecla  0/100  Ram=1
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÃÄlcd_putc  0/80  Ram=1
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ³  ³  ÀÄ*
+      ³  ³  ³  ÀÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ³     ÀÄ*
+      ³  ³  ÃÄobtener_nueva_clave  0/160  Ram=8
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄstrcmp  0/116  Ram=5
+      ³  ³  ÃÄmensage_info  0/174  Ram=6
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄmensage_info  0/174  Ram=6
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÃÄmensage_info  0/174  Ram=6
+      ³  ³  ³  ÀÄ*
+      ³  ³  ÀÄesperar  0/124  Ram=2
+      ³  ³     ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄlcd_gotoxy  0/34  Ram=4
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄ@DIV88  0/40  Ram=3
+      ³  ³     ÃÄlcd_putc  0/80  Ram=1
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄ@DIV88  0/40  Ram=3
+      ³  ³     ÃÄlcd_putc  0/80  Ram=1
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÃÄ@delay_ms1  0/38  Ram=1
+      ³  ³     ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³     ³  ÀÄ*
+      ³  ³     ÀÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³        ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÃÄ@PSTRINGC_767  0/32  Ram=2
+      ³  ³  ÀÄ*
+      ³  ÀÄmensage_info  0/174  Ram=6
+      ³     ÀÄ*
+      ÃÄmensage_info  0/174  Ram=6
+      ³  ÀÄ*
+      ÃÄesperar  0/124  Ram=2
+      ³  ÀÄ*
+      ÀÄ@PSTRINGC_767  0/32  Ram=2
+         ÀÄ*

@@ -1,0 +1,26 @@
+[PROJECT]
+Target=C:\Users\Alfred\Documents\CCS C Projects\Practica_4\main.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.015
+Compiler=PCH
+[Target Data]
+FileList=main.c
+[Directories]
+Include=
+[C:\Users\Alfred\Documents\CCS C Projects\Practica_4\main]
+Type=4
+[mru-list]
+1=main.c
+[Units]
+Count=1
+1=main (main)
+[Documentation]
+1=C:\Users\Alfred\Documents\CCS C Projects\Practica_4\main Notes.txt
+1T=main Notes.txt
+1E=
+1W=0
+Count=1
+[Opened Files]
+1=main.c
+2=..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+3=

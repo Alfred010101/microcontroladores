@@ -1,0 +1,249 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     _i2caddr
+005     _vccstate
+006     x_pos
+007     y_pos
+008     text_size
+009.0   wrap
+00A-409 ssd1306_buffer
+40A-41D buffer
+41E-41F @sprintf_string
+420-421 MAIN.valor_digital
+422-425 MAIN.valor_tension
+426-429 MAIN.porcentaje
+42A-42D MAIN.temperatura
+42E-43B MAIN.@STRPARAM
+43C-43D @ITOF.P1
+43C-43F @FLT.P2
+43C-43D SSD1306_ClearDisplay.i
+43C     SSD1306_DrawRect.x
+43C     SSD1306_Begin.vccstate
+43C-43F @ADDFF.P1
+43C-43F @PRINTF_L32D_934FPFPF.P2
+43C-43D SSD1306_Display.i
+43C-43D @PRINTF_LU_934.P1
+43C     MAIN.@SCRATCH1
+43D     SSD1306_DrawRect.y
+43D     SSD1306_Begin.i2caddr
+43D     MAIN.@SCRATCH2
+43E     SSD1306_DrawRect.w
+43E     SSD1306_Display.x
+43E     SSD1306_DrawText.x
+43E     @delay_ms1.P1
+43E     SSD1306_ClearDisplay.@SCRATCH1
+43E     MAIN.@SCRATCH3
+43E     @PRINTF_LU_934.@SCRATCH1
+43F     SSD1306_DrawRect.h
+43F     SSD1306_DrawText.y
+43F     ssd1306_command.c
+43F     SSD1306_Display.@SCRATCH1
+43F     SSD1306_ClearDisplay.@SCRATCH2
+43F     MAIN.@SCRATCH4
+43F     @PRINTF_LU_934.@SCRATCH2
+440     @PRINTF_L32D_934FPFPF.P1
+440-441 SSD1306_DrawText._text
+440     ssd1306_command.control
+440-443 @DIVFF.P1
+440-443 @ADDFF.P2
+440-443 @FLT.P3
+440     SSD1306_DrawRect.@SCRATCH1
+440     @PRINTF_LU_934.@SCRATCH3
+441     @I2C_WRITE_1.P1
+441     SSD1306_DrawFastHLine.x
+441     @PRINTF_LU_934.@SCRATCH4
+441     @PRINTF_L32D_934FPFPF.@SCRATCH1
+442     SSD1306_DrawFastHLine.y
+442     SSD1306_DrawText.size
+442     @PRINTF_LU_934.@SCRATCH5
+442     @PRINTF_L32D_934FPFPF.@SCRATCH2
+443     SSD1306_GotoXY.x
+443     SSD1306_DrawFastHLine.w
+443     SSD1306_TextSize.t_size
+443     SSD1306_DrawText.@SCRATCH1
+443     @PRINTF_LU_934.@SCRATCH6
+443     @PRINTF_L32D_934FPFPF.@SCRATCH3
+444-447 @DIVFF.P1
+444     SSD1306_Print.c
+444     SSD1306_GotoXY.y
+444     SSD1306_DrawFastHLine.color
+444     @PRINTF_LU_934.@SCRATCH7
+444     @PRINTF_L32D_934FPFPF.@SCRATCH4
+444     @ADDFF.@SCRATCH1
+444     @FLT.@SCRATCH1
+445.0   SSD1306_Print._color
+445     SSD1306_DrawFastHLine.@SCRATCH1
+445     @PRINTF_L32D_934FPFPF.@SCRATCH5
+445     @ADDFF.@SCRATCH2
+445     @FLT.@SCRATCH2
+446     SSD1306_Print.i
+446     @PRINTF_L32D_934FPFPF.@SCRATCH6
+446     @ADDFF.@SCRATCH3
+447     SSD1306_Print.j
+447     @PRINTF_L32D_934FPFPF.@SCRATCH7
+447     @ADDFF.@SCRATCH4
+448     SSD1306_Print.line
+448     @DIVFF.@SCRATCH1
+448     @PRINTF_L32D_934FPFPF.@SCRATCH8
+448     @ADDFF.@SCRATCH5
+449-44C @FTOSD.P1
+449     @SPRINTF.P2
+449-44C @MULFF.P3
+449-44C @DIV3232.P4
+449     SSD1306_Print.@SCRATCH1
+449     @DIVFF.@SCRATCH2
+449     @ADDFF.@SCRATCH6
+44A     SSD1306_Print.@SCRATCH2
+44A     @DIVFF.@SCRATCH3
+44A     @ADDFF.@SCRATCH7
+44B     SSD1306_Print.@SCRATCH3
+44B     @DIVFF.@SCRATCH4
+44B     @ADDFF.@SCRATCH8
+44C     SSD1306_FillRect.x
+44C     @DIVFF.@SCRATCH5
+44D     SSD1306_FillRect.y
+44D-450 @DIV3232.P1
+44D-450 @MULFF.P2
+44D     @DIVFF.@SCRATCH6
+44D     @FTOSD.@SCRATCH1
+44E     SSD1306_FillRect.w
+44F     SSD1306_FillRect.h
+450     SSD1306_FillRect.color
+451-452 SSD1306_FillRect.i
+451     @MULFF.@SCRATCH1
+451     @DIV3232.@SCRATCH1
+452     @MULFF.@SCRATCH2
+452     @DIV3232.@SCRATCH2
+453     SSD1306_DrawFastVLine.x
+453     @MULFF.@SCRATCH3
+453     @DIV3232.@SCRATCH3
+454     SSD1306_DrawFastVLine.y
+454     @DIV3232.@SCRATCH4
+455     SSD1306_DrawFastVLine.h
+455     @DIV3232.@SCRATCH5
+456     SSD1306_DrawFastVLine.color
+457     SSD1306_DrawFastVLine.@SCRATCH1
+458-459 SSD1306_DrawLine.x0
+45A-45B SSD1306_DrawLine.y0
+45C-45D SSD1306_DrawLine.x1
+45E-45F SSD1306_DrawLine.y1
+460     SSD1306_DrawLine.color
+461.0   SSD1306_DrawLine.steep
+462     SSD1306_DrawLine.ystep
+463     SSD1306_DrawLine.dx
+464     SSD1306_DrawLine.dy
+465-466 SSD1306_DrawLine.err
+467-468 SSD1306_DrawLine.t
+469-46A SSD1306_DrawLine.t
+46B-46C SSD1306_DrawLine.t
+46D-46E SSD1306_DrawLine.t
+46F     SSD1306_DrawPixel.x
+46F     SSD1306_DrawLine.@SCRATCH1
+470     SSD1306_DrawPixel.y
+470     SSD1306_DrawLine.@SCRATCH2
+471     SSD1306_DrawPixel.color
+471     SSD1306_DrawLine.@SCRATCH3
+472     SSD1306_DrawPixel.@SCRATCH1
+472     SSD1306_DrawLine.@SCRATCH4
+473     SSD1306_DrawPixel.@SCRATCH2
+474     SSD1306_DrawPixel.@SCRATCH3
+475     SSD1306_DrawPixel.@SCRATCH4
+476     SSD1306_DrawPixel.@SCRATCH5
+F80     PORTA
+F82     PORTC
+F83     PSP_DATA
+F83     PORTD
+F92     TRISA
+F94     TRISC
+F95     TRISD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  Font.call
+000014  Font.data
+000114  Font2.call
+000124  Font2.data
+000200  @const919.call
+00021C  @const922.call
+00023A  @const923.call
+000256  @delay_ms1
+00027E  @I2C_WRITE_1
+0002D0  ssd1306_command
+000310  SSD1306_Begin
+00045E  SSD1306_ClearDisplay
+000486  SSD1306_Display
+000544  SSD1306_GotoXY
+000562  SSD1306_TextSize
+000576  SSD1306_DrawPixel
+000666  SSD1306_DrawLine
+00085C  SSD1306_DrawFastVLine
+000886  SSD1306_FillRect
+0008C4  SSD1306_Print
+000A78  SSD1306_DrawText
+000AC2  SSD1306_DrawFastHLine
+000AEC  SSD1306_DrawRect
+000B54  @ITOF
+000B8A  @DIVFF
+000CE8  @MULFF
+000DDE  @SPRINTF
+000DFE  @PRINTF_LU_934
+000EC6  @FTOSD
+000F0A  @DIV3232
+000F9E  @PRINTF_L32D_934FPFPF
+001144  @ADDFF
+0013BE  @FLT
+001438  MAIN
+001438  @cinit1
+001456  @cinit2
+
+Project Directory:
+    C:\Users\Alfred\Documents\CCS C Projects\Practica_5\
+
+Project Files:
+    main.c                                                  [12-may.-24 21:30  CRC=6AFA7EDB]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\18f4550.h [12-nov.-13 14:35  CRC=5337E248]
+    lib\SSD1306_OLED.c                                      [01-may.-24 12:26  CRC=8BD65620]
+    ..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h [30-dic.-08 09:01  CRC=9F7F640F]
+
+Source signature=89077F61
+
+Units:
+    main (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   main.xsym
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX32:      main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.ccspjt
+    Call Tree:   main.tre
+    Statistics:  main.STA

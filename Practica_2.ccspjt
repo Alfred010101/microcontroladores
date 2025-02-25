@@ -1,0 +1,23 @@
+[PROJECT]
+Target=Practica_2.hex
+Processor_Text=PIC18F4550
+CCSVerions=5.015
+Compiler=PCH
+CCSVersion=5.015
+[Target Data]
+FileList=Practica_2.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\DriversC:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Alfred\Documents\CCS C Projects\Practica_2]
+Type=4
+[mru-list]
+1=Practica_2.c
+[Opened Files]
+1=Practica_2.c
+2=
+3=
+[Practica_2.c]
+Type=4
+[Units]
+Count=1
+1=Practica_2 (main)

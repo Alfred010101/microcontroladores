@@ -1,0 +1,59 @@
+//#include <main.h>
+#include<18F4550.h>
+#device ADC = 10
+#device PASS_STRINGS = IN_RAM
+#fuses HS, NOWDT, NOPROTECT, NOLVP,PUT,CPUDIV1, VREGEN, NOPBADEN
+#use I2C(MASTER, SDA=PIN_B0, SCL=PIN_B1, FAST=400000, STREAM=SSD1306_STREAM)
+#use delay(internal=8M)
+
+#define SSD1306_I2C_ADDRESS 0x7A
+#include"lib/SSD1306_OLED.c" 
+
+char buffer[10];
+
+void main()
+{
+   //setup_ccp1(CCP_PWM);
+   setup_adc_ports(AN0);
+   setup_adc_ports(AN1);
+   setup_adc(ADC_CLOCK_INTERNAL);
+   set_adc_channel(0);
+   //set_pwm1_duty(read_adc());
+   delay_us(20);
+   
+   SSD1306_Begin(SSD1306_SWITCHCAPVCC, SSD1306_I2C_ADDRESS);
+   SSD1306_ClearDisplay();
+   SSD1306_Display();
+   
+   int16 valor_pwm = 0;
+   float voltaje = 0;
+   
+   while(TRUE)
+   {
+      delay_us(200);
+      
+//!      float valor_adc = read_adc();
+      
+//!      temperatura = voltaje * 100;
+
+ 
+      //set_pwm1_duty(valor_pwm);
+      set_adc_channel(1);
+      valor_pwm = read_adc();
+      SSD1306_ClearDisplay();
+      SSD1306_DrawText(30, 1, "Control PWM", 1);
+      SSD1306_DrawRect(10, 12, 108, 52);
+      sprintf(buffer, "T = %.2f", voltaje);
+      SSD1306_DrawText(12, 15, buffer, 2);
+      delay_ms(400);
+      set_adc_channel(0);
+      valor_pwm = read_adc();
+      //voltaje =  valor_pwm / 1023.0 * 5.0;
+      voltaje =  100 / 1023.0 * valor_pwm;
+      sprintf(buffer, "V = %.2f", voltaje);
+      SSD1306_DrawText(12, 40, buffer, 2);
+      SSD1306_Display();
+      delay_ms(400);
+   }
+
+}
